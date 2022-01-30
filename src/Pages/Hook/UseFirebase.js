@@ -9,7 +9,7 @@ const UseFirebase = () => {
     const [user, setUser] = useState({});
     const [error, setError] = useState({});
     const auth = getAuth();
-
+    console.log(user);
 
     // -----------create user  with email and password ---------
     const signUpWithEmailAndPassword = (email, password) => {

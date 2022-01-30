@@ -1,8 +1,12 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import UseFirebase from '../Hook/UseFirebase';
 
 const Header = () => {
+
+    const { user, handleLogOut } = UseFirebase();
+    console.log(user);
     return (
         <div>
             <Navbar className=" " collapseOnSelect expand="lg" fixed="top" bg="dark" variant="dark">
@@ -14,12 +18,17 @@ const Header = () => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="ms-auto">
                             <Link className="text-decoration-none text-white " to="/home">Home</Link>
-                            <Link className="text-decoration-none text-white ms-2" to="/login">Login</Link>
-                            <a className="text-decoration-none text-white ms-2" href="#contact"> Logout</a>
+                            <Link className="text-decoration-none text-white ms-2" to="/contact">Contact</Link>
+
+                            {
+                                user.email ?
+                                    <button onClick={handleLogOut} className="text-decoration-none text-white ms-2 btn-dark" href="#contact"> Logout</button> : <Link
+                                        className="text-decoration-none text-white ms-2" to="/login">Login</Link>
+                            }
 
                         </Nav>
                         <Nav>
-                            <Link className="text-decoration-none text-white ms-2" to="blog">Contact List</Link>
+
                             <Link eventKey={2} href="#memes">
 
                             </Link>

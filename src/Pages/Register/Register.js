@@ -1,13 +1,14 @@
 import React from 'react';
 import { useRef } from 'react';
 import { useForm } from "react-hook-form";
-import "./Login.css"
+import { Link } from 'react-router-dom';
+
 import useAuth from '../Hook/UseAuth';
 import UseFirebase from '../Hook/UseFirebase';
 const Register = () => {
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
-    const password = useRef({});
-    const { singInWithGoogle, logInWithEmailAndPassword } = UseFirebase()
+
+    const { user, singInWithGoogle, logInWithEmailAndPassword } = UseFirebase()
     const onSubmit = data => {
         logInWithEmailAndPassword(data.email, data.password);
         reset();
@@ -18,7 +19,7 @@ const Register = () => {
     }
     return (
         <div>
-            <h1 className='mt-5'>Please Login</h1>
+            <h1 className='mt-5'>Please register</h1>
             <form className='react-hook-from mt-5' onSubmit={handleSubmit(onSubmit)}>
 
                 <input type="text" required placeholder='Full Name' {...register("name",
@@ -46,7 +47,8 @@ const Register = () => {
                 <br />
 
                 <input type="submit" />
-                <button className='btn-primary mt-2' onClick={handleGoogleLogin}  >Login with Google</button>
+                <button className='btn-primary mt-2' onClick={handleGoogleLogin}  >Login with Google</button><br />
+                <Link className='text-decoration-none' to="/login">Already Register? Login Now</Link>
             </form>
         </div >
     );

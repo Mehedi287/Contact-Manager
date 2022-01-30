@@ -6,6 +6,10 @@ import Home from './Pages/Home/Home';
 import Header from './Pages/Header/Header';
 import Footer from './Pages/Footer/Footer';
 import Login from './Pages/Login/Login';
+import Register from './Pages/Register/Register';
+import PrivetRoute from './Pages/PrivetRoute/PrivetRoute';
+import Contact from './Pages/Contact/Contact';
+
 
 function App() {
   return (
@@ -18,6 +22,12 @@ function App() {
           </Route>
           <Route path="/login">
             <Login></Login>
+          </Route>
+          <Route path="/register">
+            <Register></Register>
+          </Route>
+          <Route path="/contact">
+            <Contact></Contact>
           </Route>
         </Switch>
         <Footer></Footer>
