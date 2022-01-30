@@ -1,0 +1,19 @@
+.react-hook-from{
+   margin: 0 auto;
+    display: inline-block;
+
+    height: 40vh;
+   
+    color:black;
+    margin: 0 auto;
+}
+.react-hook-from input{
+    margin-top: 20px;
+    display: block;
+    border: 1px solid gray;
+    border-radius: 10px;
+    width: 300px;
+    padding: 5px;
+    
+
+}
