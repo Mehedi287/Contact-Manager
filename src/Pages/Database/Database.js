@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { db } from "../Firebase/Firebase.config"
 import { collection, getDocs } from "firebase/firestore";
 
-import ContactList from './ContactList/ContactList';
-
-const Contact = () => {
+import ContactList from '../Contact/ContactList/ContactList';
+const Database = () => {
     const [users, setUsers] = useState([]);
     const usersCollectionRef = collection(db, "users");
     useEffect(() => {
@@ -16,14 +15,10 @@ const Contact = () => {
         getUsers()
     }, [])
     return (
-        <div className='mt-5'>
-            {
-                users.map((user) =>
-                    <ContactList className="" key={user.id} user={user}></ContactList>
-                )
-            }
+        <div className='' >
+
         </div>
     );
 };
 
-export default Contact;
+export default Database;

@@ -9,6 +9,7 @@ import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import PrivetRoute from './Pages/PrivetRoute/PrivetRoute';
 import Contact from './Pages/Contact/Contact';
+import Database from './Pages/Database/Database';
 
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/contact">
             <Contact></Contact>
+          </Route>
+          <Route path="/database">
+            <Database></Database>
           </Route>
         </Switch>
         <Footer></Footer>

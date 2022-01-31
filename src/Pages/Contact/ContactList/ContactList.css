@@ -1,0 +1,11 @@
+.contact-list{
+    border: 1px solid gray;
+    background-color: rgb(133, 210, 255)!important;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+ 
+}
+.contact-list p{
+ 
+    padding: 5px;
+}
