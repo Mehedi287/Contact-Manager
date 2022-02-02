@@ -1,24 +1,15 @@
-// import React, { useEffect, useState } from 'react';
-// import { db } from "../Firebase/Firebase.config"
-// import { collection, getDocs } from "firebase/firestore";
+import { getFirestore } from "@firebase/firestore"
+import { initializeApp } from "firebase/app";
 
-// import ContactList from '../Contact/ContactList/ContactList';
-// const Database = () => {
-//     const [users, setUsers] = useState([]);
-//     const usersCollectionRef = collection(db, "users");
-//     useEffect(() => {
-//         const getUsers = async () => {
-//             const data = await getDocs(usersCollectionRef);
-//             setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-//             console.log(users);
-//         };
-//         getUsers()
-//     }, [])
-//     return (
-//         <div className='' >
-
-//         </div>
-//     );
-// };
-
-// export default Database;
+const firebaseConfig = {
+    apiKey: "AIzaSyAc3u8pyAH-LG1Stjhv22p3JmpcoSjR-BY",
+    authDomain: "contact-manager-1aea3.firebaseapp.com",
+    projectId: "contact-manager-1aea3",
+    storageBucket: "contact-manager-1aea3.appspot.com",
+    messagingSenderId: "801806399142",
+    appId: "1:801806399142:web:a4924ce0ca85f692dae667",
+    measurementId: "G-2ZDLM9P12S"
+};
+export default firebaseConfig;
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);

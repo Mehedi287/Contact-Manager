@@ -1,44 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import { db } from "../Firebase/Firebase.config"
+
+import { useForm } from "react-hook-form";
 import { collection, getDocs, addDoc, doc, deleteDoc } from "firebase/firestore";
 import "./Contact.css"
-import ContactList from './ContactList/ContactList';
+
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Contact = () => {
-    const [newName, setNewName] = useState("");
-    const [newEmail, setNewEmail] = useState("");
-    const [newPhone, setNewPhone] = useState(0);
-    const [error, setError] = useState("")
-    const [users, setUsers] = useState([]);
-
-
     const usersCollectionRef = collection(db, "users");
-    const createUser = async () => {
-        if (!newName || !newPhone || !newEmail) {
-            setError("Please provide value in each input")
-        }
-        else {
-            await addDoc(usersCollectionRef, { name: newName, email: newEmail, phone: newPhone })
-            alert("added successfully")
+    const [users, setUsers] = useState([]);
+    const history = useHistory();
+    const id = useParams();
 
+    // start react hook from 
+    const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        addDoc(usersCollectionRef, { name: data.name, email: data.email, phone: data.phone })
+        alert("added successfully")
+        reset()
+    };
+    console.log(watch("example"));
 
-        }
+    //   react hook form 
 
-
-    }
-    const Update = () => {
-
+    const updateUser = () => {
     }
     const deleteUser = async (id) => {
         const userDoc = doc(db, "users", id);
         await deleteDoc(userDoc)
     }
-
+    const viewSignalUser = () => {
+    }
     useEffect(() => {
         const getUsers = async () => {
             const data = await getDocs(usersCollectionRef);
             setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-            console.log(users);
+            console.log("thsi si data", data.docs);
         };
         getUsers()
     }, [])
@@ -52,32 +52,85 @@ const Contact = () => {
             </div>
             <div className="  row">
                 <div className="col-md-7 col">
-                    {
-                        users.map((user) =>
-                            <div className="contact-list ">
-                                <p className='email'>Name: {user.name}</p>
-                                <p className='email'>Email: {user.email}</p>
-                                <p className='email'>Phone: {user.phone}</p>
-                                <div className="d-flex p-2 me-0">
-                                    <button onClick={() => { deleteUser(user.id) }} className='btn ms-2 md-ms-2 lg-ms-2 xs-ms-0 btn-danger'>Delete</button>
-                                    <button className='btn md-ms-2 lg-ms-2 btn-primary'>Update</button>
-                                </div>
-                            </div>
-                        )
-                    }
+
+                    <table className='table table-danger'>
+                        <thead>
+                            <tr className='table-danger'>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {
+                                users.map((user) =>
+                                    <tr className='table-danger' key={user.id}>
+                                        <td className="table-danger" scope='row'>1</td>
+                                        <td className="table-danger">{user.name}</td>
+                                        <td className="table-danger">{user.email}</td>
+                                        <td className="table-danger">{user.phone}</td>
+
+                                        <td className="table-danger">
+                                            <Link to={`/update/${user.id}`}>
+                                                <button title='edit' className='border-none btn  '>
+                                                    <i
+                                                        onClick={updateUser}
+                                                        class="far fa-edit text-info  ">
+                                                    </i>
+                                                </button>
+                                            </Link>
+                                            <button onClick={deleteUser(user.id)} title='delete' className='btn  '>
+                                                <i
+
+                                                    className="far fa-trash-alt text-danger  ">
+
+                                                </i>
+                                            </button>
+                                            <Link to={`/view/${user.id}`}>
+                                                <button
+                                                    onClick={viewSignalUser}
+                                                    title='edit' className='border-none btn  '>
+                                                    <i
+
+                                                        class="far fa-eye text-info  ">
+                                                    </i>
+                                                </button>
+                                            </Link>
+
+                                        </td>
+
+                                    </tr>
+                                )
+                            }
+                        </tbody>
+                    </table>
                 </div>
                 <div className="col-md-5">
                     <div className="mt-2">
-                        <p className='text-danger'>{error}</p>
+                        <h3>Create a Contact</h3>
+                        <form className='react-hook-from' onSubmit={handleSubmit(onSubmit)}>
 
-                        <input onChange={(e) => { setNewName(e.target.value) }} placeholder='Name' type="text" />
-                        <br />
-                        <input onChange={(e) => { setNewEmail(e.target.value) }} placeholder='Email' type="email" />
-                        <br />
-                        <input onChange={(e) => { setNewPhone(e.target.value) }} placeholder='Phone' type="number" />
-                        <br />
 
-                        <button onClick={createUser}>Save</button>
+
+                            <input type="text" placeholder='Name'  {...register("name", { required: true })} />
+                            {errors.email && <span className='text-danger'>This field is required</span>}
+
+
+                            <input type="email" placeholder='Email'  {...register("email", { required: true })} />
+                            {errors.email && <span className='text-danger'>This field is required</span>}
+
+
+                            <input type="number" placeholder='Phone'  {...register("phone", { required: true })} />
+                            {errors.email && <span className='text-danger'>This field is required</span>}
+
+
+
+
+                            <input value="Save" type="submit" />
+                        </form>
 
                     </div>
                 </div>
