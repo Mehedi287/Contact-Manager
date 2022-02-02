@@ -26,13 +26,14 @@ const Login = () => {
 
     const onSubmit = data => {
         logInWithEmailAndPassword(data.email, data.password)
-        reset()
+
             .then(result => {
                 history.push(redirect_uri)
             })
             .catch((error) => {
                 setError(error.message)
             })
+        reset()
         console.log(data.email)
     };
 
@@ -66,14 +67,7 @@ const Login = () => {
                 })} />
                 {errors.password && <p className='text-danger'>{errors.password.message}</p>}
 
-
-
-
-
-
-                <br />
-
-                <input type="submit" />
+                <input value="Login" type="submit" />
                 <button className='btn-primary mt-2' onClick={handleGoogleLogin}  >Login with Google</button><br />
                 <Link className='text-decoration-none' to="/register">New User? Register Now</Link>
                 {

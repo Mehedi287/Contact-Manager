@@ -8,9 +8,9 @@ import UseFirebase from '../Hook/UseFirebase';
 const Register = () => {
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
 
-    const { user, singInWithGoogle, logInWithEmailAndPassword } = UseFirebase()
+    const { user, singInWithGoogle, signUpWithEmailAndPassword } = UseFirebase()
     const onSubmit = data => {
-        logInWithEmailAndPassword(data.email, data.password);
+        signUpWithEmailAndPassword(data.email, data.password);
         reset();
         console.log(data.email)
     };
@@ -44,9 +44,9 @@ const Register = () => {
 
 
 
-                <br />
 
-                <input type="submit" />
+
+                <input value="Register" type="submit" />
                 <button className='btn-primary mt-2' onClick={handleGoogleLogin}  >Login with Google</button><br />
                 <Link className='text-decoration-none' to="/login">Already Register? Login Now</Link>
             </form>

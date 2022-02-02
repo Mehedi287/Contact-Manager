@@ -9,7 +9,7 @@ const Header = () => {
     console.log(user);
     return (
         <div>
-            <Navbar className=" " collapseOnSelect expand="lg" fixed="top" bg="dark" variant="dark">
+            <Navbar className=" " collapseOnSelect expand="lg" sticky='top' bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand href="#home">Contact Manager
                     </Navbar.Brand>
