@@ -14,7 +14,7 @@ const Login = () => {
 
 
     // -----------------------redirect ---------
-    const redirect_uri = location.state?.from.pathname || "/home"
+    const redirect_uri = location.state?.from.pathname || "/contact"
     console.log(redirect_uri);
 
 

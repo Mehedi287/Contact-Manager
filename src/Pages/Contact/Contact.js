@@ -15,7 +15,7 @@ const Contact = () => {
     const deleteUser = (id) => {
         if (window.confirm("you want to delete?")) {
 
-            axios.delete(`http://localhost:5000/contacts/${id}`)
+            axios.delete(`https://quiet-castle-97214.herokuapp.com/contacts/${id}`)
                 .then(res => {
                     if (res.data.deletedCount) {
                         const remain = contact.filter(order => order._id !== id);
@@ -31,7 +31,7 @@ const Contact = () => {
     const viewSignalUser = () => { };
 
     useEffect(() => {
-        const url = `http://localhost:5000/contacts/${user.email}`;
+        const url = `https://quiet-castle-97214.herokuapp.com/contacts/${user.email}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setContact(data))
@@ -40,7 +40,7 @@ const Contact = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = async data => {
         data.mail = user.email;
-        axios.post("http://localhost:5000/contacts", data)
+        axios.post("https://quiet-castle-97214.herokuapp.com/contacts", data)
             .then(res => {
 
                 if (res.data.insertedId) {

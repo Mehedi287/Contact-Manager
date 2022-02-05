@@ -18,7 +18,7 @@ const Edit = () => {
 
     //------------------------- add a contact -------------------
     const onSubmit = data => {
-        fetch(`http://localhost:5000/contacts`, {
+        fetch(`https://quiet-castle-97214.herokuapp.com/contacts`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -40,7 +40,7 @@ const Edit = () => {
     //-------------------------- view cntact -------------------------- 
 
     useEffect(() => {
-        fetch('http://localhost:5000/contacts')
+        fetch('https://quiet-castle-97214.herokuapp.com/contacts')
             .then(res => res.json())
             .then(data => {
                 const d = data.filter(detail => detail._id === id);

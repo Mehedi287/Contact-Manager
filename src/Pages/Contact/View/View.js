@@ -6,7 +6,7 @@ const View = () => {
     const [detail, setDetail] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/contacts')
+        fetch('https://quiet-castle-97214.herokuapp.com/contacts')
             .then(res => res.json())
             .then(data => {
                 const d = data.filter(detail => detail._id === id);
