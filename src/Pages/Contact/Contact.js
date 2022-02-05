@@ -3,10 +3,7 @@ import axios from 'axios';
 import { useForm } from "react-hook-form";
 import "./Contact.css"
 import { Link } from 'react-router-dom';
-// import { useHistory } from 'react-router-dom';
-// import { useParams } from 'react-router-dom';
-// import useAuth from '../Hook/UseAuth';
-// import UseFirebase from '../Hook/UseFirebase';
+
 import UseAuth from '../Hook/UseAuth';
 
 const Contact = () => {
@@ -14,6 +11,7 @@ const Contact = () => {
     const [searchName, setSearchName] = useState("");
     const [result, setResult] = useState([])
     const { user } = UseAuth();
+    // -------------------delete contact ----------------------
     const deleteUser = (id) => {
         if (window.confirm("you want to delete?")) {
 
@@ -29,11 +27,8 @@ const Contact = () => {
 
     }
 
-    // console.log("result = ", result);
     const updateUser = () => { };
     const viewSignalUser = () => { };
-    // console.log("from contsct", contact.forEach(f)=>{f.name});
-
 
     useEffect(() => {
         const url = `http://localhost:5000/contacts/${user.email}`;
@@ -41,10 +36,8 @@ const Contact = () => {
             .then(res => res.json())
             .then(data => setContact(data))
     }, [contact])
-    // console.log("ami email form contats", user.email);
-
     // // start react hook from 
-    const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = async data => {
         data.mail = user.email;
         axios.post("http://localhost:5000/contacts", data)
@@ -52,23 +45,17 @@ const Contact = () => {
 
                 if (res.data.insertedId) {
                     alert(" Add successfully");
-
                 }
                 reset();
             })
 
     };
     const handleOnChange = (e) => {
-        // e.preventDefault();
         const value = e.target.value;
         e.preventDefault()
-
         setSearchName(value);
-
-
-
     }
-    // console.log();
+
     const search = () => {
         const result = contact.filter(function (f) { return f.name == searchName.toString() })
         console.log("search result", result, "name", searchName);
@@ -81,10 +68,7 @@ const Contact = () => {
 
                 <input type="text" className='border rounded' onChange={handleOnChange} name="" placeholder='Search By Name' id="" />
                 <input type="submit" value="Search" onClick={search} name="" placeholder='Search By Name' id="" />
-
-
             </div>
-
 
             {
 
@@ -172,11 +156,6 @@ const Contact = () => {
                     }
 
                 </div>
-
-
-
-
-
 
                 <div className="col-md-5">
                     <div className="mt-2">

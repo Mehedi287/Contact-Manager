@@ -1,27 +1,20 @@
 import React from 'react';
-import { useRef } from 'react';
+
 import { useForm } from "react-hook-form";
-import { useHistory } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+
 import { Link } from 'react-router-dom';
 import UseAuth from '../Hook/UseAuth';
 import "./Register.css"
-
-import useAuth from '../Hook/UseAuth';
-import UseFirebase from '../Hook/UseFirebase';
 const Register = () => {
-
-
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
-
-    const { user, singInWithGoogle, signUpWithEmailAndPassword } = UseAuth()
+    const { singInWithGoogle, signUpWithEmailAndPassword } = UseAuth();
     const onSubmit = data => {
-        signUpWithEmailAndPassword(data.email, data.password)
+        signUpWithEmailAndPassword(data.email, data.password);
         reset();
-        console.log(data.email)
+        console.log(data.email);
     };
     const handleGoogleLogin = () => {
-        singInWithGoogle()
+        singInWithGoogle();
 
     }
     return (

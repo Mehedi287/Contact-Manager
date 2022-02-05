@@ -2,8 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import "./Login.css"
 import { useHistory, useLocation } from 'react-router-dom';
-import useAuth from '../Hook/UseAuth';
-import UseFirebase from '../Hook/UseFirebase';
+
 import { Link } from 'react-router-dom';
 import UseAuth from '../Hook/UseAuth';
 
