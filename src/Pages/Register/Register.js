@@ -1,24 +1,31 @@
 import React from 'react';
 import { useRef } from 'react';
 import { useForm } from "react-hook-form";
+import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import UseAuth from '../Hook/UseAuth';
+import "./Register.css"
 
 import useAuth from '../Hook/UseAuth';
 import UseFirebase from '../Hook/UseFirebase';
 const Register = () => {
+
+
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
 
-    const { user, singInWithGoogle, signUpWithEmailAndPassword } = UseFirebase()
+    const { user, singInWithGoogle, signUpWithEmailAndPassword } = UseAuth()
     const onSubmit = data => {
-        signUpWithEmailAndPassword(data.email, data.password);
+        signUpWithEmailAndPassword(data.email, data.password)
         reset();
         console.log(data.email)
     };
     const handleGoogleLogin = () => {
-        singInWithGoogle();
+        singInWithGoogle()
+
     }
     return (
-        <div>
+        <div className='container register'>
             <h1 className='mt-5'>Please register</h1>
             <form className='react-hook-from mt-5' onSubmit={handleSubmit(onSubmit)}>
 
@@ -38,12 +45,6 @@ const Register = () => {
                     }
                 })} />
                 {errors.password && <p className='text-danger'>{errors.password.message}</p>}
-
-
-
-
-
-
 
 
                 <input value="Register" type="submit" />

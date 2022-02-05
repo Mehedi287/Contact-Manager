@@ -1,15 +1,17 @@
-import { getFirestore } from "@firebase/firestore"
 import { initializeApp } from "firebase/app";
+import { getFirestore, } from "firebase/firestore";
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAc3u8pyAH-LG1Stjhv22p3JmpcoSjR-BY",
-    authDomain: "contact-manager-1aea3.firebaseapp.com",
-    projectId: "contact-manager-1aea3",
-    storageBucket: "contact-manager-1aea3.appspot.com",
-    messagingSenderId: "801806399142",
-    appId: "1:801806399142:web:a4924ce0ca85f692dae667",
-    measurementId: "G-2ZDLM9P12S"
+    apiKey: "AIzaSyDRoi_oFTnBTxzwuO2hRSEzeu8LvMCumfQ",
+    authDomain: "contact-manager-15650.firebaseapp.com",
+    projectId: "contact-manager-15650",
+    storageBucket: "contact-manager-15650.appspot.com",
+    messagingSenderId: "1039097468785",
+    appId: "1:1039097468785:web:448e2cb63a77d1717f88d0"
 };
-export default firebaseConfig;
+
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+// export const db = getFirestore(app);
+export default firebaseConfig;

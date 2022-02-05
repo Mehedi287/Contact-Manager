@@ -5,6 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../Hook/UseAuth';
 import UseFirebase from '../Hook/UseFirebase';
 import { Link } from 'react-router-dom';
+import UseAuth from '../Hook/UseAuth';
 
 const Login = () => {
 
@@ -14,22 +15,21 @@ const Login = () => {
 
 
     // -----------------------redirect ---------
-    const redirect_uri = location.state?.from.pathname || "/contact"
-    console.log(location.state);
+    const redirect_uri = location.state?.from.pathname || "/home"
+    console.log(redirect_uri);
 
 
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
     const password = useRef({});
 
 
-    const { singInWithGoogle, user, logInWithEmailAndPassword } = UseFirebase()
+    const { singInWithGoogle, user, logInWithEmailAndPassword } = UseAuth();
 
     const onSubmit = data => {
-        logInWithEmailAndPassword(data.email, data.password)
-
-            .then(result => {
-                history.push(redirect_uri)
-            })
+        logInWithEmailAndPassword(data.email, data.password).then(result => {
+            console.log("log in succcess");
+            history.push(redirect_uri)
+        })
             .catch((error) => {
                 setError(error.message)
             })
@@ -49,7 +49,7 @@ const Login = () => {
 
 
     return (
-        <div>
+        <div className='container register'>
             <h1 className='mt-5'>Please Login</h1>
             <form className='react-hook-from mt-5' onSubmit={handleSubmit(onSubmit)}>
 

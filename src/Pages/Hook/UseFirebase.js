@@ -9,8 +9,8 @@ const UseFirebase = () => {
     const [user, setUser] = useState({});
     const [error, setError] = useState({});
     const auth = getAuth();
-    console.log(user);
-
+    // console.log(user);
+    // 
     // -----------create user  with email and password ---------
     const signUpWithEmailAndPassword = (email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
@@ -25,14 +25,15 @@ const UseFirebase = () => {
 
     // ----------------login with email and password -------------
     const logInWithEmailAndPassword = (email, password) => {
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                setUser(userCredential.user);
+        return signInWithEmailAndPassword(auth, email, password)
 
-            })
-            .catch((error) => {
-                setError(error.massage)
-            })
+        // .then((userCredential) => {
+        //     setUser(userCredential.user);
+
+        // })
+        // .catch((error) => {
+        //     setError(error.massage)
+        // })
     }
 
 
